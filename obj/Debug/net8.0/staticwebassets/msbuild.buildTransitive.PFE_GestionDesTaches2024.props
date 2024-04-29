@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\PFE_GestionDesTaches2024.props" />
+</Project>

@@ -1,0 +1,6 @@
+@PFE_GestionDesTaches2024_HostAddress = http://localhost:5063
+
+GET {{PFE_GestionDesTaches2024_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
