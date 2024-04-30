@@ -8,6 +8,7 @@ namespace PFE_GestionDesTaches2024.Data;
 public class ApplicationDbContext : IdentityUserContext<ApplicationUser>
 {
     public DbSet<Page> Pages => Set<Page>();
+    public DbSet<Projet> Projets => Set<Projet>();
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)

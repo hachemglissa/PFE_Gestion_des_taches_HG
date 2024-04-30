@@ -18,8 +18,8 @@ public class PagesController : ControllerBase
     {
         _dbContext = dbContext;
     }
-    
-    [Authorize (Roles = "Admin")]
+
+    [Authorize(Roles = "Admin")]
     [HttpPost("new")]
     public async Task<ActionResult<Page>> CreatePage(PageDto pageDto)
     {
@@ -27,22 +27,21 @@ public class PagesController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-        
+
         var page = new Page
         {
-            Id = pageDto.Id,
             Title = pageDto.Title,
             Author = pageDto.Author,
             Body = pageDto.Body,
         };
-        
+
         _dbContext.Pages.Add(page);
         await _dbContext.SaveChangesAsync();
-        
+
         return CreatedAtAction(nameof(GetPage), new { id = page.Id }, page);
     }
-    
-        
+
+
     [HttpGet("{id:int}")]
     public async Task<ActionResult<PageDto>> GetPage(int id)
     {
