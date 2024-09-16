@@ -4,10 +4,6 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using PFE_Gestion_des_taches_HG.Models;
 using PFE_Gestion_des_taches_HG.Services.Abstraction;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PFE_Gestion_des_taches_HG.Enums;
 
 namespace PFE_Gestion_des_taches_HG.Controllers
 {
@@ -25,7 +21,7 @@ namespace PFE_Gestion_des_taches_HG.Controllers
             _logger = logger;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,TeamLeader")]
         [HttpPost("new")]
         [EnableCors("AllowAll")]
         public async Task<ActionResult<TacheDto>> CreateTache([FromBody] TacheDto tacheDto)
@@ -72,7 +68,7 @@ namespace PFE_Gestion_des_taches_HG.Controllers
                 return StatusCode(500, "Internal server error.");
             }
         }
-
+        [Authorize(Roles = "Admin,TeamLeader,Client,User,Developer")]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<TacheDto>> GetTache(int id)
         {
@@ -107,6 +103,7 @@ namespace PFE_Gestion_des_taches_HG.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,TeamLeader,Client,User,Developer")]
         [HttpGet("byproject/{idProjet:int}")]
         public async Task<ActionResult<IEnumerable<TacheDto>>> GetAllTachesByProjet(int idProjet)
         {
@@ -143,7 +140,7 @@ namespace PFE_Gestion_des_taches_HG.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,TeamLeader")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateTache(int id, [FromBody] TacheDto tacheDto)
         {
@@ -182,7 +179,7 @@ namespace PFE_Gestion_des_taches_HG.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,TeamLeader")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteTache(int id)
         {

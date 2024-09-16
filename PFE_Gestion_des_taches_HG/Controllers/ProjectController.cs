@@ -75,6 +75,7 @@ namespace PFE_Gestion_des_taches_HG.Controllers
             return Ok(projetDto);
         }
 
+        [Authorize(Roles = "Admin,TeamLeader,Client,User,Developer")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjetDto>>> GetAllProjets()
         {

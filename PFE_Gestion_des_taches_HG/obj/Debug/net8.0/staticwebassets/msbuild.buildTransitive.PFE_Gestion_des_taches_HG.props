@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\PFE_Gestion_des_taches_HG.props" />
+</Project>
